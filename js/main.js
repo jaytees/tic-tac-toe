@@ -2,50 +2,93 @@ $(document).ready( function () {
   console.log('DOM LOADED');
 
   let player = 1;
+  let moves = 9;
 
 
   $('.squares').on('click', function (ev) {
-    console.log(ev);
+    // console.log(ev);
 
     const squareClicked = '#' + ev.target.id;
+      //provides div position of click
 
-    console.log(squareClicked);
+    const indexNum = squareClicked.replace(/[^0-9]/g,'')
+      //gets index number from click
 
-    if (player === 1) {
+    const ifTaken = squareChecker( squareClicked );
+      // runs function to check if square already played
 
-      const $counterZero = $('<div>0</div>');
 
-      $counterZero.addClass('counterZero');
+    if (ifTaken === false) { //checks square available to play
 
-      $(squareClicked).append( $counterZero );
+      moveCount();
 
-      // $(squareClicked).html('<div>0</div>').addClass('.counterZero').append()
-      //
+      if (player === 1) {
 
-      //add the css
 
-      // $('.counterZero').css('visibility', 'visible');
-      player = 2;
+        const $counterZero = $('<div class="counterZero">0</div>');
+        $(squareClicked).append($counterZero);
+        //creates div with 0
+
+        grid[0][indexNum] = '0';
+        //updates grid array by selected square
+
+        player = 2;
+        //changes player
+
+      } else {
+
+        const $counterX = $('<div class=counterX>X</div>');
+        $(squareClicked).append( $counterX );
+        //creates div with X
+
+        grid[0][indexNum] = 'X';
+        //updates grid array by selected square
+
+        player = 1;
+        //changes player
+
+      }; //nested if
+
+
     } else {
 
-      const $counterX = $('<div>X</div>');
+      console.log('Please select another square');
 
-      $counterX.addClass('counterX');
-
-      $(squareClicked).append( $counterX );
+    }; //square checker
 
 
-      // $(squareClicked).html('<div>X</div>').addClass('.counterZero').append()
+  }); //square selector
 
 
-      // $('.counterX').css('visibility', 'visible');
 
+  const squareChecker =  function ( squareClicked ) {
 
-      player = 1;
+    const contents = $(squareClicked).text();
+
+      if (contents === '0' || contents === 'X') {
+
+        return true;
+
+      } else {
+
+        return false;
+
+      }; //if
+
+  }; //square checker
+
+  const moveCount = function () {
+
+    moves -= 1;
+
+    if (moves === 0) {
+
+      console.log('Game Over');
+
     };
 
-  });
 
+  }; //moves checker
 
 
 

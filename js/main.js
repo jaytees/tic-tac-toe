@@ -11,8 +11,8 @@ $(document).ready( function () {
     const squareClicked = '#' + ev.target.id;
       //provides div position of click
 
-    const indexNum = squareClicked.replace(/[^0-9]/g,'')
-      //gets index number from click
+    // const indexNum = squareClicked.replace(/[^0-9]/g,'')
+      // gets index number from click
 
     const ifTaken = squareChecker( squareClicked );
       // runs function to check if square already played
@@ -25,12 +25,16 @@ $(document).ready( function () {
       if (player === 1) {
 
 
-        const $counterZero = $('<div class="counterZero">0</div>');
+        const $counterZero = $('<div class="counterZero">O</div>');
         $(squareClicked).append($counterZero);
         //creates div with 0
 
-        grid[0][indexNum] = '0';
-        //updates grid array by selected square
+        // grid[0][indexNum] = '0';
+        // updates grid array by selected square
+
+        placeInGrid(squareClicked, 'O');
+
+        checkForWinner('O')
 
         player = 2;
         //changes player
@@ -41,8 +45,12 @@ $(document).ready( function () {
         $(squareClicked).append( $counterX );
         //creates div with X
 
-        grid[0][indexNum] = 'X';
-        //updates grid array by selected square
+        // grid[0][indexNum] = 'X';
+        // //updates grid array by selected square
+
+        placeInGrid(squareClicked, 'X');
+
+        checkForWinner('X')
 
         player = 1;
         //changes player
@@ -65,7 +73,7 @@ $(document).ready( function () {
 
     const contents = $(squareClicked).text();
 
-      if (contents === '0' || contents === 'X') {
+      if (contents === 'O' || contents === 'X') {
 
         return true;
 
@@ -76,6 +84,8 @@ $(document).ready( function () {
       }; //if
 
   }; //square checker
+
+
 
   const moveCount = function () {
 
@@ -89,8 +99,6 @@ $(document).ready( function () {
 
 
   }; //moves checker
-
-
 
 
 

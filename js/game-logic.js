@@ -14,7 +14,7 @@ console.log('game-logic');
 
 
 
-const grid = ['', '', '', '', '', '', '', '', '']
+let grid = [];
 
 
 

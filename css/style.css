@@ -113,8 +113,11 @@ h1 {
   text-align: center;
   letter-spacing: 4px;
   cursor: pointer;
-  
+
 }
+
+/* removes blue border from button */
+button:focus {outline:0;}
 
 .counterZero {
   /* metal color */

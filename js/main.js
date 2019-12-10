@@ -4,7 +4,11 @@ $(document).ready( function () {
   let player = 1;
   let moves = 9;
 
+  let winCheck = false;
+  console.log(winCheck);
 
+  let scoreO = 0;
+  let scoreX = 0;
 
 
   $('.squares').on('click', function (ev) {
@@ -20,9 +24,10 @@ $(document).ready( function () {
       // runs function to check if square already played
 
 
-    if (ifTaken === false) { //checks square available to play
+    if (ifTaken === false && winCheck === false) { //checks square available to play
 
       moveCount();
+
 
       if (player === 1) {
 
@@ -36,11 +41,12 @@ $(document).ready( function () {
 
         placeInGrid(squareClicked, 'O');
 
-        let winCheck = checkForWinner('O')
+        winCheck = checkForWinner('O')
         // console.log(winCheck);
 
         if (winCheck) {
           console.log('O is Winner');
+          scoreO += 1;
 
           //call function to reset board and display message
         };
@@ -61,11 +67,12 @@ $(document).ready( function () {
 
         // checkForWinner('X')
 
-        let winCheck = checkForWinner('X')
+        winCheck = checkForWinner('X')
         // console.log(winCheck);
 
         if (winCheck) {
           console.log(`X is Winner`);
+          scoreX += 1;
 
           //call function to reset board and display message
         };
@@ -73,6 +80,7 @@ $(document).ready( function () {
 
         player = 1;
         //changes player
+
 
       }; //nested if
 
@@ -123,13 +131,32 @@ $(document).ready( function () {
 
   $('#resetButton').on('click', function () {
 
-    $('.counterZero', '.counterX').html()
+    $('.counterZero, .counterX').remove()
 
-  })
+    grid = [];
+
+    winCheck = false;
+
+    player = 1;
+
+    moves = 9;
+
+  }); // resetButton
+
 
   const winnerFound = function () {
 
     //update score
+
+    // if winner === 0
+      // update score0 += 1;
+
+    // if winner ==== X
+      // update scoreX += 1;
+
+    // if moves = 0
+      // gameover
+
 
   }; //winnerFound
 

@@ -56,43 +56,54 @@ const placeInGrid = function (squareClicked, counter) {
 }; //placeInGrid
 
 
-
 const checkForWinner =  function (counter) {
 
 
   if (grid[0] === counter && grid[1] === counter && grid[2] === counter ) {
     //Horiz WINNER
-    console.log('horiz1 wins');
+    // console.log('horiz1 wins');
+    return true;
 
   } else if (grid[3] === counter && grid[4] === counter && grid[5] === counter) {
     //Horiz WINNER
-    console.log('horiz2 wins');
+    // console.log('horiz2 wins');
+    return true;
 
   } else if (grid[6] === counter && grid[7] === counter && grid[8] === counter) {
     //Horiz WINNER
-    console.log('horiz3 wins');
+    // console.log('horiz3 wins');
+    return true;
 
   } else if (grid[0] === counter && grid[3] === counter && grid[6] === counter ) {
     //Vert WINNER
-    console.log('vert1 wins');
+    // console.log('vert1 wins');
+    return true;
 
   } else if (grid[1] === counter && grid[4] === counter && grid[7] === counter) {
     //Vert WINNER
-    console.log('vert2 wins');
+    // console.log('vert2 wins');
+    return true;
 
   } else if (grid[2] === counter && grid[5] === counter && grid[8] === counter) {
     //Vert WINNER
-    console.log('vert3 wins');
+    // console.log('vert3 wins');
+    return true;
 
   }else if (grid[0] === counter && grid[4] === counter && grid[8] === counter ) {
     //Diag WINNER
-    console.log('diag1 wins');
+    // console.log('diag1 wins');
+    return true;
 
   } else if (grid[2] === counter && grid[4] === counter && grid[6] === counter) {
     //Diag WINNER
-    console.log('diag2 wins');
+    // console.log('diag2 wins');
+    return true;
 
-  }; //if statements
+  } else {
+
+    return false;
+
+  }; //if else
 
 
 

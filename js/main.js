@@ -5,6 +5,8 @@ $(document).ready( function () {
   let moves = 9;
 
 
+
+
   $('.squares').on('click', function (ev) {
     // console.log(ev);
 
@@ -34,7 +36,14 @@ $(document).ready( function () {
 
         placeInGrid(squareClicked, 'O');
 
-        checkForWinner('O')
+        let winCheck = checkForWinner('O')
+        // console.log(winCheck);
+
+        if (winCheck) {
+          console.log('O is Winner');
+
+          //call function to reset board and display message
+        };
 
         player = 2;
         //changes player
@@ -50,7 +59,17 @@ $(document).ready( function () {
 
         placeInGrid(squareClicked, 'X');
 
-        checkForWinner('X')
+        // checkForWinner('X')
+
+        let winCheck = checkForWinner('X')
+        // console.log(winCheck);
+
+        if (winCheck) {
+          console.log(`X is Winner`);
+
+          //call function to reset board and display message
+        };
+
 
         player = 1;
         //changes player
@@ -100,6 +119,12 @@ $(document).ready( function () {
 
   }; //moves checker
 
+
+  const winnerFound = function () {
+
+
+
+  }; //winnerFound
 
 
 }); //DOM Loaded

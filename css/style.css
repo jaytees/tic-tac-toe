@@ -1,5 +1,72 @@
+@import url('https://fonts.googleapis.com/css?family=Monoton&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Inconsolata|Monoton&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
+
+/* font-family: 'Monoton', cursive;
+font-family: 'Press Start 2P', cursive;
+font-family: 'Rye', cursive; */
+
+/* #cf4916
+#f9ac3d
+#758c33
+#985913
+#cfb185
+#2c758c */
+
+
+
+body {
+  /* 70's version */
+  /* background-color: rgb(155,73,35); */
+
+  /* metal version */
+  background-color: #ffffff;
+  background-image: url(https://www.transparenttextures.com/patterns/brushed-alum.png);
+
+}
+
+h1 {
+  text-align: center;
+  font-weight: lighter;
+  font-size: 62px;
+  margin: 40px auto;
+
+  /* metal theme */
+  font-family: 'Josefin Sans', sans-serif;
+  color: #a3a3a3;
+  letter-spacing: 10px;
+  text-shadow: -5px 2px 6px;
+
+
+  /* 70's version */
+  /* color: rgb(245,198,0);
+  font-family: 'Monoton', cursive; */
+}
+
+/* h2 {
+
+  font-family: 'Inconsolata', monospace;
+  text-align: center;
+  font-weight: lighter;
+} */
+
+
+
+
 #gameboard{
-  border: 3px solid red;
+  /* 70's version */
+  /* border: 3px solid rgb(255, 73, 0);
+  background-color: rgb(216,70,11); */
+
+/* clean silver border */
+  border: 10px solid rgba(190, 190, 190, 0.94);
+  border-left-color: rgba(136, 136, 136, 0.94);
+  border-bottom-color: rgba(136, 136, 136, 0.94);
+  background-image: url(https://www.transparenttextures.com/patterns/brushed-alum.png);
+  background-color: rgba(136, 136, 136, 0.94);
+  box-shadow: -2px 5px 15px;
+
+
   height: 206px;
   width: 206px;
   position: absolute;
@@ -9,10 +76,19 @@
   right: 0;
   margin: auto;
 
+  padding: 10px;
+
 }
 
 .squares {
-  border: 3px solid black;
+  /* 70's version */
+  /* border: 3px solid rgb(255, 221, 78);
+  background-color: rgb(194,23,3); */
+
+  /* brushed metal version */
+  border: 3px solid rgba(194, 194, 194, 0.31);
+  box-shadow: 0px 0px 4px 0px;
+
   height: 60px;
   width: 60px;
   margin: 0;
@@ -22,13 +98,19 @@
 }
 
 .counterZero {
-  /* visibility: hidden; */
+  /* metal color */
+  color: #d6d6d6;
+
   display: table;
-  margin: 21px auto;
+  margin: 0 auto;
+  font-size: 55px;
 }
 
 .counterX {
-  /* visibility: hidden; */
+  /* metal color */
+  color: #d6d6d6;
+
   display: table;
-  margin: 21px auto;
+  margin: 0 auto;
+  font-size: 55px;
 }

@@ -120,9 +120,16 @@ $(document).ready( function () {
   }; //moves checker
 
 
+
+  $('#resetButton').on('click', function () {
+
+    $('.counterZero', '.counterX').html()
+
+  })
+
   const winnerFound = function () {
 
-
+    //update score
 
   }; //winnerFound
 

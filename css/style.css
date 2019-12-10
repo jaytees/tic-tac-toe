@@ -97,6 +97,25 @@ h1 {
   text-align: center;
 }
 
+#resetButton {
+
+  height: 30px;
+  width: 200px;
+  left: 50%;
+  top: 80%;
+  margin-top: -15px;
+  margin-left: -100px;
+  position: absolute;
+  border-radius: 25px;
+  box-shadow: inset 1px -3px 12px 0px;
+  background-color: white;
+  font-family: 'Josefin Sans', sans-serif;
+  text-align: center;
+  letter-spacing: 4px;
+  cursor: pointer;
+  
+}
+
 .counterZero {
   /* metal color */
   color: #d6d6d6;

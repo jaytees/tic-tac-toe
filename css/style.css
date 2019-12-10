@@ -43,13 +43,18 @@ h1 {
   font-family: 'Monoton', cursive; */
 }
 
-/* h2 {
+#message {
 
-  font-family: 'Inconsolata', monospace;
   text-align: center;
   font-weight: lighter;
-} */
+  font-size: 16px;
+  margin: 35px auto;
+  font-family: 'Josefin Sans', sans-serif;
+  color: #5490ff;
+  letter-spacing: 10px;
+  /* text-shadow: -3px 2px 4px; */
 
+}
 
 
 
@@ -93,8 +98,9 @@ h1 {
   width: 60px;
   margin: 0;
   display: inline-block;
-
   text-align: center;
+
+  cursor: pointer;
 }
 
 #resetButton {

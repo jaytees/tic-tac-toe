@@ -86,11 +86,15 @@ $(document).ready( function () {
       }; //nested if
 
 
-    } else {
+    } else if (ifTaken === true) {
 
       console.log('Please select another square');
 
-    }; //square checker
+    } else if (winCheck === true) {
+
+      console.log('Game has already been won, please reset to play again');
+
+    }; //if
 
 
   }); //square selector

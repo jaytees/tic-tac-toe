@@ -5,10 +5,11 @@ $(document).ready( function () {
   let moves = 9;
 
   let winCheck = false;
-  console.log(winCheck);
+  // console.log(winCheck);
 
   let scoreO = 0;
   let scoreX = 0;
+
 
 
   $('.squares').on('click', function (ev) {
@@ -45,10 +46,10 @@ $(document).ready( function () {
         // console.log(winCheck);
 
         if (winCheck) {
-          console.log('O is Winner');
-          scoreO += 1;
-
-          //call function to reset board and display message
+          // console.log('O is Winner');
+          // scoreO += 1;
+          // console.log(scoreO);
+          winnerFound('O');
         };
 
         player = 2;
@@ -71,10 +72,10 @@ $(document).ready( function () {
         // console.log(winCheck);
 
         if (winCheck) {
-          console.log(`X is Winner`);
-          scoreX += 1;
-
-          //call function to reset board and display message
+          // console.log(`X is Winner`);
+          // scoreX += 1;
+          // console.log(scoreX);
+          winnerFound('X')
         };
 
 
@@ -144,14 +145,25 @@ $(document).ready( function () {
   }); // resetButton
 
 
-  const winnerFound = function () {
+  const winnerFound = function (counter) {
 
     //update score
+    //call function to reset board and display message on delay
 
-    // if winner === 0
+    if (counter === 'O') {
+      console.log('O is Winner');
+      scoreO += 1;
+
+    } else if (counter === 'X') {
+      console.log('X is Winner');
+      scoreX += 1;
+
+    }; //if
+
+    // if counter === 0
       // update score0 += 1;
 
-    // if winner ==== X
+    // if counter === X
       // update scoreX += 1;
 
     // if moves = 0

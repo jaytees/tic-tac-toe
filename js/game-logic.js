@@ -17,7 +17,6 @@ console.log('game-logic');
 let grid = [];
 
 
-
 const placeInGrid = function (squareClicked, counter) {
   // this will pick the array
 

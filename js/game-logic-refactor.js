@@ -35,7 +35,9 @@ const placeInGrid = function (squareClicked, counter){
 
           if (grid[first] === counter && grid[second] === counter && grid[third] === counter ){
 
-              console.log('winner');
+              // console.log('winner');
+
+              return true;
 
           };//winner
 

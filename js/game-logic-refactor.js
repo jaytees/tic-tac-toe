@@ -1,6 +1,6 @@
 console.log('refactor');
 
-// let grid = [];
+let grid = [];
 
 
 const winCombos = [
@@ -21,32 +21,25 @@ const placeInGrid = function (squareClicked, counter){
 
     const indexNum = parseInt(squareClicked.replace(/[^0-9]/g,''));  //gets number of square class and parse to integer
 
-    // console.log(typeof indexNum);
+    grid[indexNum] = counter;
 
     for (var i = 0; i < winCombos.length; i++) {
       let currentArray = winCombos[i];
+      const first = currentArray[0];
+      const second = currentArray[1];
+      const third = currentArray[2];
       // console.log(currentArray);
+      // console.log(first);
+      // console.log(second);
+      // console.log(third);
 
-        for (var j = 0; j < currentArray.length; j++) {
-          // console.log(currentArray[j]);
+          if (grid[first] === counter && grid[second] === counter && grid[third] === counter ){
 
-              if (currentArray[j] === indexNum) {
+              console.log('winner');
 
-                currentArray[j] = counter;
+          };//winner
 
-              }; // if
+      }; // loop
 
-        }; //nested loop
-
-      }; // first loop
 
 }; // placeGrid
-
-
-///loop through winning winCombos
-// /see if any equal ['X','X', 'X'] or ['0', '0', '0']
-const checkForWinner = function ( counter ) {
-
-    
-
-}; // checkForWinner

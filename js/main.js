@@ -15,6 +15,8 @@ $(document).ready( function () {
   $('.squares').on('click', function (ev) {
     // console.log(ev);
 
+    playerIdentifier(player);
+
     const squareClicked = '#' + ev.target.id;
       //provides div position of click
 
@@ -146,6 +148,9 @@ $(document).ready( function () {
 
     moves = 9;
 
+    $('#message').text('');
+
+
   }); // resetButton
 
 
@@ -155,26 +160,50 @@ $(document).ready( function () {
     //call function to reset board and display message on delay
 
     if (counter === 'O') {
-      console.log('O is Winner');
+      // console.log('O is Winner');
       scoreO += 1;
+      $('#scoreCountO').text(scoreO); //updates score on screen
+      $('#message').text('O IS WINNER!').css({
+        color: '#5490ff',
+        visibility: 'visible',
+      }) //displays message
 
     } else if (counter === 'X') {
-      console.log('X is Winner');
+      // console.log('X is Winner');
       scoreX += 1;
+      $('#scoreCountX').text(scoreX);
+      $('#message').text('X IS WINNER!').css({
+        color: '#5b9665',
+        visibility: 'visible',
+      })
+
 
     }; //if
 
-    // if counter === 0
-      // update score0 += 1;
-
-    // if counter === X
-      // update scoreX += 1;
 
     // if moves = 0
       // gameover
 
 
   }; //winnerFound
+
+
+  const playerIdentifier = function ( player ) {
+
+      if (player === 1) {  //statements are opposite to turn logic so it alternates after every squareClicked
+
+        $('#x').css('color', '#5b9665');
+        $('#o').css('color', '#d6d6d6');
+
+      } else {
+
+        $('#o').css('color', '#5490ff');
+        $('#x').css('color', '#d6d6d6');
+
+      }; // if
+
+
+  }; // playerIdentifier
 
 
 }); //DOM Loaded

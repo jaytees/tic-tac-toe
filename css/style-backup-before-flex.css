@@ -45,24 +45,17 @@ h1 {
 
 #message {
 
-  visibility: hidden;
-
   text-align: center;
   font-weight: lighter;
   font-size: 16px;
   margin: 35px auto;
   font-family: 'Josefin Sans', sans-serif;
+  color: #5490ff;
   letter-spacing: 10px;
   /* text-shadow: -3px 2px 4px; */
 
   width: 265px;
   height: 40px;
-
-  /* for 0 */
-  /* color: #5490ff; */
-
-  /* for X */
-  /* color: #5b9665; */
 
 }
 
@@ -115,104 +108,19 @@ h1 {
   cursor: pointer;
 }
 
-#container {
-  height: 221px;
-  width: 505px;
-  /* border: 1px solid; */
-  margin: 0 auto;
-  display: block;
-}
-
-
 .scoreBoard {
 
   display: inline-block;
 
-  height: 120px;
-  width: 78px;
+  height: 80px;
+  width: 60px;
 
-  /* border: 1px solid red; */
+  border: 3px solid red;
+
+
+
 
 }
-
-#scoreBoardLeft {
-  margin: 50px 140px 50px 25px;
-}
-
-#scoreBoardRight {
-  margin: 50px 26px 49px 151px;
-}
-
-.playerNames {
-  display: inline-block;
-  text-align: center;
-  font-family: 'Josefin Sans', sans-serif;
-  letter-spacing: 4px;
-
-  font-size: small;
-  padding: 0px 0px 0px 4px;
-
-  margin-top: 5px;
-  margin-bottom: 0;
-
-}
-
-.playerCounter {
-  display: inline-block;
-  text-align: center;
-  /* font-family: 'Josefin Sans', sans-serif; */
-  letter-spacing: 4px;
-
-  font-size: 55px;
-  margin: 0 17px 0px 17px;
-  padding-left: 3px;
-}
-
-
-#o {
-  /* default */
-  /* color: #d6d6d6; */
-
-  /* turn identifier; */
-  color: #5490ff;
-}
-
-#x {
-  /* default */
-  color: #d6d6d6;
-
-  /* turn identifier; */
-  /* color: #5b9665; */
-}
-
-
-.score {
-
-  display: inline-block;
-  text-align: center;
-  font-family: 'Josefin Sans', sans-serif;
-  letter-spacing: 6px;
-  font-size: small;
-  padding: 0px 0px 0px 5px;
-  margin-top: 5px;
-  margin-bottom: 0;
-
-}
-
-
-.scoreCount {
-
-  display: inline-block;
-  text-align: center;
-  font-family: 'Josefin Sans', sans-serif;
-  letter-spacing: 4px;
-
-  margin: 0;
-  padding-left: 36px;
-
-}
-
-
 
 
 #resetButton {

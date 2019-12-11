@@ -5,7 +5,6 @@ $(document).ready( function () {
   let moves = 9;
 
   let winCheck = false;
-  // console.log(winCheck);
 
   let scoreO = 0;
   let scoreX = 0;
@@ -18,82 +17,53 @@ $(document).ready( function () {
     playerIdentifier(player); //changes scoreboard color
 
     const squareClicked = '#' + ev.delegateTarget.id;
-    // console.log(squareClicked);
-    // debugger;
-      //provides div position of click
-
-    // const indexNum = squareClicked.replace(/[^0-9]/g,'')
-      // gets index number from click
-
-
+    //provides div position of click
 
     const ifTaken = squareChecker( squareClicked );
       // runs function to check if square already played
-
 
     if (ifTaken === false && winCheck === false) { //checks square available to play and no winnerFound
 
       $('#message').text('');
 
-      if (player === 1) {
+          if (player === 1) {
+
+            const $counterZero = $('<div class="counterZero">O</div>');
+            $(squareClicked).append($counterZero);
+            //creates div with 0
 
 
-        const $counterZero = $('<div class="counterZero">O</div>');
-        $(squareClicked).append($counterZero);
-        //creates div with 0
+            placeInGrid(squareClicked, 'O');
 
-        // grid[0][indexNum] = '0';
-        // updates grid array by selected square
+                if (checkForWinner('O')) {
 
-        placeInGrid(squareClicked, 'O');
+                  winnerFound('O');
+                  //if win found winnerFound function runs
+                };
 
-        // winCheck = checkForWinner('O')
-        //loops through grid array, returns true if win
-        // console.log(winCheck);
+            player = 2;
+            //changes player
 
-        if (checkForWinner('O')) {
-          // console.log('O is Winner');
-          // scoreO += 1;
-          // console.log(scoreO);
-          winnerFound('O');
-          //if win found winnerFound function runs
-        };
+          } else {
 
-        player = 2;
-        //changes player
+            const $counterX = $('<div class=counterX>X</div>');
+            $(squareClicked).append( $counterX );
+            //creates div with X
 
-      } else {
+            placeInGrid(squareClicked, 'X');
 
-        const $counterX = $('<div class=counterX>X</div>');
-        $(squareClicked).append( $counterX );
-        //creates div with X
+                if (checkForWinner('X')) {
 
-        // grid[0][indexNum] = 'X';
-        // //updates grid array by selected square
+                  winnerFound('X')
+                  //if win found winnerFound function runs
 
-        placeInGrid(squareClicked, 'X');
+                };
 
-        // checkForWinner('X')
-
-        // winCheck = checkForWinner('X')
-        //loops through grid array, returns true if win
-        // console.log(winCheck);
-
-        if (checkForWinner('X')) {
-          // console.log(`X is Winner`);
-          // scoreX += 1;
-          // console.log(scoreX);
-          winnerFound('X')
-          //if win found winnerFound function runs
-
-        };
+            player = 1;
+            //changes player
 
 
-        player = 1;
-        //changes player
-
-
-      }; //nested if
+          }; //nested if
 
 
     } else if (winCheck === true) {
@@ -106,15 +76,10 @@ $(document).ready( function () {
         'line-height': '24px',
       });
 
-    } else if (ifTaken === true) {
-
-
-      console.log('Please select another square');
-
-
     }; //if
 
     moveCount();
+
 
 
   }); //square selector
@@ -154,7 +119,7 @@ $(document).ready( function () {
     moves -= 1;
 
     if (moves === 0 && winCheck === false) {
-      $('#message').text('GAME OVER!').css({
+      $('#message').text('DRAW!').css({
         color: '#ff5454',
         visibility: 'visible',
         'font-size': '17px',
@@ -162,7 +127,7 @@ $(document).ready( function () {
         'line-height': '24px',
       });
 
-      console.log('gameover');
+      // console.log('gameover');
 
       return true;
 
@@ -170,7 +135,6 @@ $(document).ready( function () {
 
 
   }; //moves checker
-
 
 
   $('#resetButton').on('click', function () {
@@ -195,6 +159,23 @@ $(document).ready( function () {
 
 
   }); // resetButton
+
+  const playerIdentifier = function ( player ) {
+
+      if (player === 1) {  //statements are opposite to turn logic so it alternates after every squareClicked
+
+        $('#x').css('color', '#5b9665');
+        $('#o').css('color', '#d6d6d6');
+
+      } else {
+
+        $('#o').css('color', '#5490ff');
+        $('#x').css('color', '#d6d6d6');
+
+      }; // if
+
+
+  }; // playerIdentifier
 
 
   const winnerFound = function (counter) {
@@ -235,25 +216,6 @@ $(document).ready( function () {
 
 
   }; //winnerFound
-
-
-  const playerIdentifier = function ( player ) {
-
-      if (player === 1) {  //statements are opposite to turn logic so it alternates after every squareClicked
-
-        $('#x').css('color', '#5b9665');
-        $('#o').css('color', '#d6d6d6');
-
-      } else {
-
-        $('#o').css('color', '#5490ff');
-        $('#x').css('color', '#d6d6d6');
-
-      }; // if
-
-
-  }; // playerIdentifier
-
 
 
 

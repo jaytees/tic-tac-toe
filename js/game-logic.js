@@ -13,8 +13,20 @@ console.log('game-logic');
 // ];
 
 
-
 let grid = [];
+
+
+const winCombos = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6]
+];
+
 
 
 const placeInGrid = function (squareClicked, counter) {
@@ -29,11 +41,6 @@ const placeInGrid = function (squareClicked, counter) {
 
 }; //placeInGrid
 
-
-const winCombos = [
-  [0, 1, 2],
-
-];
 
 
 const checkForWinner =  function (counter) {
@@ -60,7 +67,7 @@ const checkForWinner =  function (counter) {
   } else if (grid[0] === counter && grid[3] === counter && grid[6] === counter ) {
     //Vert WINNER
     // console.log('vert1 wins');
-    boardAnimate( counter );
+    // boardAnimate( counter );
     return true;
 
   } else if (grid[1] === counter && grid[4] === counter && grid[7] === counter) {
@@ -96,35 +103,3 @@ const checkForWinner =  function (counter) {
 
 
 }; //checkForWinner
-
-
-
-
-//below is from placeInGrid wasnt necessary
-
-
-// if (indexNum === '0' || indexNum === '1' || indexNum === '2' ) {
-//   // console.log('if 1');
-//   //go in array 0
-//   // grid[0][indexNum] = counter;
-//   // updates 2d grid array by selected square
-//
-//   grid[indexNum] = counter;
-//
-// } else if (indexNum === '3' || indexNum === '4' || indexNum === '5' ) {
-//   // console.log('if 2');
-//   //go in array 1
-//   // grid[1][indexNum] = counter;
-//     // updates 2d grid array by selected square
-//
-//     grid[indexNum] = counter;
-//
-// } else if (indexNum === '6' || indexNum === '7' || indexNum === '8' ) {
-//   // console.log('if 3');
-//   //go in array 2
-//   // grid[2][indexNum] = counter;
-//   //updates 2d grid array by selected square
-//
-//   grid[indexNum] = counter;
-//
-// }; //if statements

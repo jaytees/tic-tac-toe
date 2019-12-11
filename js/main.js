@@ -25,13 +25,13 @@ $(document).ready( function () {
     // const indexNum = squareClicked.replace(/[^0-9]/g,'')
       // gets index number from click
 
+
+
     const ifTaken = squareChecker( squareClicked );
       // runs function to check if square already played
 
 
     if (ifTaken === false && winCheck === false) { //checks square available to play and no winnerFound
-
-      moveCount();
 
       $('#message').text('');
 
@@ -47,11 +47,11 @@ $(document).ready( function () {
 
         placeInGrid(squareClicked, 'O');
 
-        winCheck = checkForWinner('O')
+        // winCheck = checkForWinner('O')
         //loops through grid array, returns true if win
         // console.log(winCheck);
 
-        if (winCheck) {
+        if (checkForWinner('O')) {
           // console.log('O is Winner');
           // scoreO += 1;
           // console.log(scoreO);
@@ -75,11 +75,11 @@ $(document).ready( function () {
 
         // checkForWinner('X')
 
-        winCheck = checkForWinner('X')
+        // winCheck = checkForWinner('X')
         //loops through grid array, returns true if win
         // console.log(winCheck);
 
-        if (winCheck) {
+        if (checkForWinner('X')) {
           // console.log(`X is Winner`);
           // scoreX += 1;
           // console.log(scoreX);
@@ -96,14 +96,7 @@ $(document).ready( function () {
       }; //nested if
 
 
-    } else if (ifTaken === true) {
-
-
-      console.log('Please select another square');
-
-
-    }
-    else if (winCheck === true) {
+    } else if (winCheck === true) {
 
       $('#message').text('PLEASE RESET BOARD TO PLAY AGAIN! ').css({
         color: '#ff5454',
@@ -113,7 +106,15 @@ $(document).ready( function () {
         'line-height': '24px',
       });
 
+    } else if (ifTaken === true) {
+
+
+      console.log('Please select another square');
+
+
     }; //if
+
+    moveCount();
 
 
   }); //square selector
@@ -153,9 +154,6 @@ $(document).ready( function () {
     moves -= 1;
 
     if (moves === 0 && winCheck === false) {
-
-      console.log('gameover');
-
       $('#message').text('GAME OVER!').css({
         color: '#ff5454',
         visibility: 'visible',
@@ -163,6 +161,8 @@ $(document).ready( function () {
         'letter-spacing': '2px',
         'line-height': '24px',
       });
+
+      console.log('gameover');
 
       return true;
 
@@ -259,6 +259,9 @@ $(document).ready( function () {
 
 
 }); //DOM Loaded
+
+
+
 
 
 

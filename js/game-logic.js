@@ -30,7 +30,10 @@ const placeInGrid = function (squareClicked, counter) {
 }; //placeInGrid
 
 
+const winCombos = [
+  [0, 1, 2],
 
+];
 
 
 const checkForWinner =  function (counter) {

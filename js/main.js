@@ -15,9 +15,11 @@ $(document).ready( function () {
   $('.squares').on('click', function (ev) {
     // console.log(ev);
 
-    playerIdentifier(player);
+    playerIdentifier(player); //changes scoreboard color
 
-    const squareClicked = '#' + ev.target.id;
+    const squareClicked = '#' + ev.delegateTarget.id;
+    // console.log(squareClicked);
+    // debugger;
       //provides div position of click
 
     // const indexNum = squareClicked.replace(/[^0-9]/g,'')
@@ -27,10 +29,11 @@ $(document).ready( function () {
       // runs function to check if square already played
 
 
-    if (ifTaken === false && winCheck === false) { //checks square available to play
+    if (ifTaken === false && winCheck === false) { //checks square available to play and no winnerFound
 
       moveCount();
 
+      $('#message').text('');
 
       if (player === 1) {
 
@@ -45,6 +48,7 @@ $(document).ready( function () {
         placeInGrid(squareClicked, 'O');
 
         winCheck = checkForWinner('O')
+        //loops through grid array, returns true if win
         // console.log(winCheck);
 
         if (winCheck) {
@@ -52,6 +56,7 @@ $(document).ready( function () {
           // scoreO += 1;
           // console.log(scoreO);
           winnerFound('O');
+          //if win found winnerFound function runs
         };
 
         player = 2;
@@ -71,6 +76,7 @@ $(document).ready( function () {
         // checkForWinner('X')
 
         winCheck = checkForWinner('X')
+        //loops through grid array, returns true if win
         // console.log(winCheck);
 
         if (winCheck) {
@@ -78,6 +84,8 @@ $(document).ready( function () {
           // scoreX += 1;
           // console.log(scoreX);
           winnerFound('X')
+          //if win found winnerFound function runs
+
         };
 
 
@@ -90,11 +98,20 @@ $(document).ready( function () {
 
     } else if (ifTaken === true) {
 
+
       console.log('Please select another square');
 
-    } else if (winCheck === true) {
 
-      console.log('Game has already been won, please reset to play again');
+    }
+    else if (winCheck === true) {
+
+      $('#message').text('PLEASE RESET BOARD TO PLAY AGAIN! ').css({
+        color: '#ff5454',
+        visibility: 'visible',
+        'font-size': '17px',
+        'letter-spacing': '4px',
+        'line-height': '24px',
+      });
 
     }; //if
 
@@ -105,9 +122,19 @@ $(document).ready( function () {
 
   const squareChecker =  function ( squareClicked ) {
 
+    // const squareClickedNoHash = squareClicked - '#';
+
     const contents = $(squareClicked).text();
 
       if (contents === 'O' || contents === 'X') {
+
+        $('#message').text('PLEASE SELECT ANOTHER SQUARE').css({
+          color: '#ff5454',
+          visibility: 'visible',
+          'font-size': '17px',
+          'letter-spacing': '2px',
+          'line-height': '24px',
+        });
 
         return true;
 
@@ -125,9 +152,19 @@ $(document).ready( function () {
 
     moves -= 1;
 
-    if (moves === 0) {
+    if (moves === 0 && winCheck === false) {
 
-      console.log('Game Over');
+      console.log('gameover');
+
+      $('#message').text('GAME OVER!').css({
+        color: '#ff5454',
+        visibility: 'visible',
+        'font-size': '17px',
+        'letter-spacing': '2px',
+        'line-height': '24px',
+      });
+
+      return true;
 
     };
 
@@ -149,6 +186,12 @@ $(document).ready( function () {
     moves = 9;
 
     $('#message').text('');
+    //3 lines below with empty values reset css to default
+    $('.scoreBoard').css('color', '');
+    $('#x').css('color', '');
+    $('#o').css('color', '');
+
+    // console.log(player);
 
 
   }); // resetButton
@@ -160,22 +203,28 @@ $(document).ready( function () {
     //call function to reset board and display message on delay
 
     if (counter === 'O') {
-      // console.log('O is Winner');
-      scoreO += 1;
-      $('#scoreCountO').text(scoreO); //updates score on screen
-      $('#message').text('O IS WINNER!').css({
-        color: '#5490ff',
-        visibility: 'visible',
-      }) //displays message
+
+        // console.log('O is Winner');
+        scoreO += 1;
+        $('#scoreCountO').text(scoreO); //updates score on screen
+        $('#message').text('O IS WINNER!').css({
+          color: '#5490ff',
+          visibility: 'visible',
+        }); //displays message
+        $('#scoreBoardLeft').css('color', '#5490ff'); //makes score board all blue
+
+
 
     } else if (counter === 'X') {
-      // console.log('X is Winner');
-      scoreX += 1;
-      $('#scoreCountX').text(scoreX);
-      $('#message').text('X IS WINNER!').css({
-        color: '#5b9665',
-        visibility: 'visible',
-      })
+
+        // console.log('X is Winner');
+        scoreX += 1;
+        $('#scoreCountX').text(scoreX);
+        $('#message').text('X IS WINNER!').css({
+          color: '#5b9665',
+          visibility: 'visible',
+        });
+        $('#scoreBoardRight').css('color', '#5b9665'); //makes score board all green
 
 
     }; //if
@@ -206,4 +255,23 @@ $(document).ready( function () {
   }; // playerIdentifier
 
 
+
+
+
 }); //DOM Loaded
+
+
+
+
+// const boardAnimate = function ( counter ) {
+//
+//   if (counter === 'X') {
+//
+//     $('.counterX').css('color', '#5b9665');
+//
+//   } else {
+//
+//     $('.counterZero').css('color', '#5490ff');
+//
+//   }
+// }

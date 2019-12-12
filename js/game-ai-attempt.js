@@ -19,106 +19,74 @@ const winCombos = [
 let winningSelector = '';
 
 
-//push squareClicked index to winCombos
+//push squareClicked index to grid array
 const gameLogic = function (squareClicked, counter){
 
-    const indexNum = parseInt(squareClicked);  //gets number from square class and parse to integer
+  const indexNum = parseInt(squareClicked);  //gets number from square class and parse to integer
 
-    grid[indexNum] = counter;
+  grid[indexNum] = counter;
 
-    // console.log(grid[indexNum]);
-
-    for (let i = 0; i < winCombos.length; i++) {
-      let currentArray = winCombos[i];
-      let first = currentArray[0];
-      let second = currentArray[1];
-      let third = currentArray[2];
-
-
-          if (grid[first] === counter && grid[second] === counter && grid[third] === counter ){
-
-              winningSelector = `#${first}, #${second}, #${third}`;
-              // saves winning array as class's
-
-              return true;
-
-          };// if winner
-
-      }; // loop
-
+  // console.log(grid[indexNum]);
 
 }; // placeGrid
 
 
-const gameLogicAi = function (counter) {
+//checks if winning combo fiund
+const winLogic = function (counter) {
 
-  aiGrid = [];
+  for (let i = 0; i < winCombos.length; i++) {
+    let currentArray = winCombos[i];
+    let first = currentArray[0];
+    let second = currentArray[1];
+    let third = currentArray[2];
+    //loops through winningcombos, saves value at each index
 
-  for (var i = 0; i < grid.length; i++) {
+    //uses above as index value as index in array
+    //if counter is present in all 3 index positions, win
+    if (grid[first] === counter && grid[second] === counter && grid[third] === counter ){
 
-      if (grid[i] === '' ) {
+      winningSelector = `#${first}, #${second}, #${third}`;
+      // saves winning array as class's
 
-        aiGrid.push(i);
-        //pushes empty index numbers to ai array
+      return true;
 
-      }; // if
+    };// if winner
 
-  }; // for loop
+  }; // loop
 
-  //use math.random to get a random number maximum being length of array, math.floor to ensure whole number
+}; //winLogic
 
-  const randomNumber = Math.floor((Math.random() * aiGrid.length)); // returns random number
 
-  // console.log(randomNumber);
+const gameLogicAi = function () {
 
-  //use random number as the index
-  // find value at that index
+aiGrid = [];
 
-  const emptySpotIndex = aiGrid[randomNumber];
+for (var i = 0; i < grid.length; i++) {
 
-  // console.log(aiGrid[randomNumber]);
+    if (grid[i] === '' ) {
 
-  //interpolate as html class
+      aiGrid.push(i);
+      //pushes empty index numbers to ai array
 
-  let aiChoice = `#${emptySpotIndex}`;
-  console.log(aiChoice);
+    }; // if
 
-  grid[emptySpotIndex] = 'X';
+}; // for loop
 
-  //appened select to DOM
 
-  const $counterX = $('<div class=counterX>X</div>');
-  $(aiChoice).append( $counterX );
-  //
-  console.log($counterX);
+const randomNumber = Math.floor((Math.random() * aiGrid.length)); // returns random number
+
+const emptySpotIndex = aiGrid[randomNumber];
+
+//interpolate as html class
+let aiChoice = `#${emptySpotIndex}`;
+
+grid[emptySpotIndex] = 'X';
+//so spot on game grid doesnt show emppty again
+
+//appened select to DOM
+const $counterX = $('<div class=counterX>X</div>');
+$(aiChoice).append( $counterX );
+
 
 
 }; //gameLogicAi
-
-// let aiChoice = '';
-//
-// const gameLogicAi = function ( counter ) {
-//
-//   let emptySpot = grid.indexOf('');
-//   console.log(emptySpot);
-//
-//   grid[emptySpot] = counter;
-//   console.log(grid);
-//
-//   aiChoice = `#${emptySpot}`;
-//   console.log(aiChoice);
-//
-//   const $counterX = $('<div class=counterX>X</div>');
-//   $(aiChoice).append( $counterX );
-//
-//   console.log($counterX);
-//
-//   player = 1;
-//
-// }
-
-// let emptySpot = grid.indexOf(grid[i])
-// console.log(emptySpot); //returns first empty spot 7 times (full array)
-//
-// grid[emptySpot] = counter;
-// console.log(grid); // continues adding X in empty spots till array filled

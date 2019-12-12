@@ -23,6 +23,73 @@ body {
 
 }
 
+.welcomeScreen {
+/*
+  display: inline-block;
+  border: 1px solid black;
+
+  position: fixed;
+  height: 300px;
+  width: 300px; */
+
+  position: absolute;
+  top: 28%;
+  left: 25%;
+  width: 50%;
+  height: 44%;
+  z-index: 10;
+  background-color: rgba(0,0,0,0.78); /*dim the background*/
+  /* border: 1px solid black; */
+  border-radius: 10px;
+
+  visibility: visible;
+
+}
+
+.welcomeScreen h2 {
+
+  text-align: center;
+  font-weight: lighter;
+  font-size: 30px;
+  margin: 38px auto;
+  font-family: 'Josefin Sans', sans-serif;
+  color: #ffc252;
+  letter-spacing: 10px;
+  line-height: 45px;
+
+}
+
+#singlePlayer, #multiPlayer {
+
+  height: 30px;
+  width: 200px;
+  left: 50%;
+  top: 59%;
+  margin-top: -15px;
+  margin-left: -100px;
+  position: absolute;
+  border-radius: 25px;
+  box-shadow: inset 1px -3px 12px 0px;
+  background-color: white;
+  font-family: 'Josefin Sans', sans-serif;
+  text-align: center;
+  letter-spacing: 4px;
+  cursor: pointer;
+
+}
+
+
+#multiPlayer {
+
+  left: 50%;
+  top: 78%;
+  margin-top: -15px;
+  margin-left: -100px;
+
+}
+
+
+
 h1 {
   text-align: center;
   font-weight: lighter;
@@ -219,7 +286,9 @@ h1 {
 }
 
 /* removes blue border from button */
-button:focus {outline:0;}
+button:focus {
+  outline:0;
+}
 
 .counterZero {
   /* metal color */

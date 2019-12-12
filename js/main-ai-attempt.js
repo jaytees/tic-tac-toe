@@ -4,10 +4,26 @@ $(document).ready( function () {
   let player = 1;
   let moves = 9;
 
-  let winCheck = false;
+  let winner = false;
 
   let scoreO = 0;
   let scoreX = 0;
+
+  let gameType = 1;
+
+  $('#singlePlayer').on('click', function () {
+
+    gameType = 1;
+    $('.welcomeScreen').css('visibility', 'hidden');
+
+  }); //singlePlayer button
+
+  $('#multiPlayer').on('click', function () {
+
+    gameType = 2;
+    $('.welcomeScreen').css('visibility', 'hidden');
+
+  }); //multiPlayer button
 
 
 
@@ -22,43 +38,53 @@ $(document).ready( function () {
     const ifTaken = squareChecker( squareClicked );
       // runs function to check if square already played
 
-    if (ifTaken === false && winCheck === false) { //checks square available to play and no winnerFound
-
-      $('#message').text(''); //clear any messages
-
-          if (player === 1) {
-
-            const $counterZero = $('<div class="counterZero">O</div>');
-            $(squareClicked).append($counterZero);
-            //creates div with O
-
-            squareSelectAndWin(ev.delegateTarget.id, 'O')
-
-            player = 2;
-
-          } else {
-
-             const $counterX = $('<div class=counterX>X</div>');
-             $(squareClicked).append( $counterX );
-             //creates div with X
-
-            squareSelectAndWin(ev.delegateTarget.id, 'X')
-
-            player = 1;
 
 
-          }; //nested if
+    if (ifTaken === false && winner === false) { //checks square available to play and no winner
+
+        $('#message').text(''); //clear any messages
+
+            if (player === 1) {
+
+              const $counterZero = $('<div class="counterZero">O</div>');
+              $(squareClicked).append($counterZero);
+              //creates div with O
+
+              gameLogic(ev.delegateTarget.id, 'O');
+
+              winChecker('O');
+
+          // squareSelectAndWin(ev.delegateTarget.id, 'O')
+
+              player = 2;
+
+            } else {
+
+               const $counterX = $('<div class=counterX>X</div>');
+               $(squareClicked).append( $counterX );
+               //creates div with X
+
+               gameLogic(ev.delegateTarget.id, 'X');
+
+               winChecker('X');
+
+          // squareSelectAndWin(ev.delegateTarget.id, 'X')
+
+              player = 1;
 
 
-    } else if (winCheck === true) {
+            }; //nested if
 
-      $('#message').text('PLEASE RESET BOARD TO PLAY AGAIN! ').css({
-        color: '#ff5454',
-        visibility: 'visible',
-        'font-size': '17px',
-        'letter-spacing': '4px',
-        'line-height': '24px',
-      });
+
+      } else if (winner === true) {
+
+        $('#message').text('PLEASE RESET BOARD TO PLAY AGAIN! ').css({
+          color: '#ff5454',
+          visibility: 'visible',
+          'font-size': '17px',
+          'letter-spacing': '4px',
+          'line-height': '24px',
+        });
 
     }; //if
 
@@ -66,14 +92,20 @@ $(document).ready( function () {
 
     // for one player
 
-    setTimeout(function () {
+    if (gameType === 1 && winner === false) {
 
-      gameLogicAi();
-      player = 1;
+      setTimeout(function () {
 
-    }, 4000);
+        playerIdentifier(player); //changes scoreboard color
+        gameLogicAi();
+        winChecker('X');
+        // squareSelectAndWin(ev.delegateTarget.id, 'X')
+        player = 1;
 
-    
+      }, 2000);
+
+    }; //one player
+
 
 
   }); //square selector
@@ -81,7 +113,6 @@ $(document).ready( function () {
 
   const squareChecker =  function ( squareClicked ) {
 
-    // const squareClickedNoHash = squareClicked - '#';
 
     const contents = $(squareClicked).text();
 
@@ -110,7 +141,7 @@ $(document).ready( function () {
 
     moves -= 1;
 
-    if (moves === 0 && winCheck === false) {
+    if (moves === 0 && winner === false) {
       $('#message').text('DRAW!').css({
         color: '#ff5454',
         visibility: 'visible',
@@ -133,9 +164,9 @@ $(document).ready( function () {
 
     $('.counterZero, .counterX').remove();
 
-    grid = [];
+    grid = ['', '', '', '', '', '', '', ''];
 
-    winCheck = false;
+    winner = false;
 
     player = 1;
 
@@ -152,69 +183,60 @@ $(document).ready( function () {
 
   }); // resetButton
 
-  const squareSelectAndWin = function (squareClicked, counter ) {
 
-    if (gameLogic(squareClicked, counter)) {
-      //if game logic returns true, winner found
+  const winChecker = function (counter) {
 
-      winnerFound(counter);
+    if (winLogic(counter)) {
+      //if win logic returns true, winner found
 
-    }; //if
+      winner = true;
 
-  }; //squareSelectAndWin
+      boardWinAnimate( winningSelector, counter);
 
-  const winnerFound = function (counter) {
+        if (counter === 'O') {
 
-    //update score
-    //call function to reset board and display message on delay
-
-    winCheck = true;
-
-    boardWinAnimate( winningSelector, counter);
-
-    if (counter === 'O') {
-
-      // console.log('O is Winner');
-      scoreO += 1;
-      $('#scoreCountO').text(scoreO); //updates score on screen
-      $('#message').text('O IS WINNER!').css({
-        color: '#5490ff',
-        visibility: 'visible',
-      }); //displays message
-      $('#scoreBoardLeft').css('color', '#5490ff'); //makes score board all blue
-      $('#o').css('color', '#5490ff');
-      $('#x').css('color', '#d6d6d6');
+            // console.log('O is Winner');
+            scoreO += 1;
+            $('#scoreCountO').text(scoreO); //updates score on screen
+            $('#message').text('O IS WINNER!').css({
+              color: '#5490ff',
+              visibility: 'visible',
+            }); //displays message
+            $('#scoreBoardLeft').css('color', '#5490ff'); //makes score board all blue
+            $('#o').css('color', '#5490ff');
+            $('#x').css('color', '#d6d6d6');
 
 
 
-    } else if (counter === 'X') {
+        } else if (counter === 'X') {
 
-      // console.log('X is Winner');
-      scoreX += 1;
-      $('#scoreCountX').text(scoreX);
-      $('#message').text('X IS WINNER!').css({
-        color: '#5b9665',
-        visibility: 'visible',
-      });
-      $('#scoreBoardRight').css('color', '#5b9665'); //makes score board all green
-      $('#x').css('color', '#5b9665');
-      $('#o').css('color', '#d6d6d6');
-
-
-    }; //if
-
-    setTimeout(function () {
-
-      $('#resetButton').trigger('click');
-
-      // .fadeOut("slow")
-
-    }, 3000);
+            // console.log('X is Winner');
+            scoreX += 1;
+            $('#scoreCountX').text(scoreX);
+            $('#message').text('X IS WINNER!').css({
+              color: '#5b9665',
+              visibility: 'visible',
+            });
+            $('#scoreBoardRight').css('color', '#5b9665'); //makes score board all green
+            $('#x').css('color', '#5b9665');
+            $('#o').css('color', '#d6d6d6');
 
 
+        }; // nested if
+
+        setTimeout(function () {
+
+          $('#resetButton').trigger('click');
+
+          // .fadeOut("slow")
+
+        }, 3000);
+
+    }; // if
 
 
-  }; //winnerFound
+
+  }; //winChecker
 
 
   const playerIdentifier = function ( player ) {

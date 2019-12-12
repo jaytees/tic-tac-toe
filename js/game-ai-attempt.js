@@ -62,57 +62,79 @@ const gameLogicAi = function () {
 aiGrid = [];
 
 
-    if (grid[4] === '') {
-
-      createAiCounter(4);
-
-    } else if (grid[0] === '') {
-
-      createAiCounter(0);
-
-    } else if (grid[2] === '') {
-
-      createAiCounter(2);
-
-    } else if (grid[6] === '') {
-
-      createAiCounter(6);
-
-    }else if (grid[8] === '') {
-
-      createAiCounter(8);
-
-    } else {
-
-        for (var i = 0; i < grid.length; i++) {
-
-          if (grid[i] === '' ) {
-
-            aiGrid.push(i);
-            //pushes empty index numbers to ai array
-
-          }; // if
-
-        }; //loop
-
-    }; // main if
+for (let j = 0; j < winCombos.length; j++) {
+  let currentArray = winCombos[j];
+  let first = currentArray[0]; // x
+  let second = currentArray[1]; // x
+  let third = currentArray[2]; // empty
 
 
-  createRandomAiCounter();
-  // createAiCounter();
+  if (grid[first] === 'X' && grid[second] === 'X' && grid[third] === ''){
+
+    createAiCounter(third);
+    break;
+
+  } else if (grid[second] === 'X' && grid[third] === 'X' && grid[first] === '' ) {
+
+    createAiCounter(first);
+    break;
+
+  } else if (grid[first] === 'X' && grid[third] === 'X' && grid[second] === '' ) {
+
+    createAiCounter(second);
+    break;
+
+  }
+
+      if (grid[4] === '') {
+
+        createAiCounter(4);
+
+      } else if (grid[0] === '') {
+
+        createAiCounter(0);
+
+      } else if (grid[2] === '') {
+
+        createAiCounter(2);
+
+      } else if (grid[6] === '') {
+
+        createAiCounter(6);
+
+      }else if (grid[8] === '') {
+
+        createAiCounter(8);
+
+      } else {
+
+          for (var l = 0; l < grid.length; l++) {
+
+            if (grid[l] === '' ) {
+
+              aiGrid.push(l);
+              //pushes empty index numbers to ai array
+
+
+            }; // if
+
+          }; //loop
+
+          createRandomAiCounter();
+
+      }; // main if
+
+}; // loop
+
 
 
 
 
 }; //gameLogicAi
 
+
+
 const createAiCounter = function ( logicIndex ) {
-
-  //randomNumber is the position of an indexNum in aiGrid
-  //empty spot index is the value
-  // const emptySpotIndex = aiGrid[logicIndex];
-  // console.log(emptySpotIndex);
-
 
   //interpolate as html class
   let aiChoice = `#${logicIndex}`;
@@ -130,6 +152,23 @@ const createAiCounter = function ( logicIndex ) {
 };
 
 
+
+// loop from createAiCounter
+// for (var i = 0; i < aiGrid.length; i++) {
+//
+//   if (aiGrid[i] === 4 || aiGrid[i] === 0 || aiGrid[i] === 2 || aiGrid[i] === 6 || aiGrid[i] === 8) {
+//
+//       return emptySpotIndex = aiGrid[i];
+//
+//   } else {
+//
+//       const randomNumber = Math.floor((Math.random() * aiGrid.length)); // returns random number
+//
+//       let emptySpotIndex = aiGrid[randomNumber]
+//
+//   }; //if
+//
+// }; //loop
 
 
 //create ai counter with random number
@@ -152,20 +191,64 @@ const createRandomAiCounter = function () {
 }; //createRandomAiCounter
 
 
+// for (let i = 0; i < winCombos.length; i++) {
+//   let currentArray = winCombos[i];
+//   let first = currentArray[0]; // x
+//   let second = currentArray[1]; // x
+//   let third = currentArray[2]; // empty
+//   //loops through winningcombos, saves value at each index
+//
+//   //uses above as index value as index in array
+//   //if counter is present in all 3 index positions, win
+//   if (grid[first] === counter && grid[second] === counter && grid[third] === counter ){
+//
+//     winningSelector = `#${first}, #${second}, #${third}`;
+//     // saves winning array as class's
+//
+//     return true;
+//
+//   };// if winner
+//
+// }; // loop
 
-// loop from createAiCounter
-// for (var i = 0; i < aiGrid.length; i++) {
+// for (let j = 0; j < winCombos.length; j++) {
+//   let currentArray = winCombos[j];
+//   let first = currentArray[0]; // x
+//   let second = currentArray[1]; // x
+//   let third = currentArray[2]; // empty
 //
-//   if (aiGrid[i] === 4 || aiGrid[i] === 0 || aiGrid[i] === 2 || aiGrid[i] === 6 || aiGrid[i] === 8) {
+//   if (grid[first] === 'X' && grid[second] === 'X' || grid[second] === 'X' && grid[third] === 'X' || grid[first] === 'X' && grid[third] === 'X' ) {
 //
-//       return emptySpotIndex = aiGrid[i];
+//     console.log(currentArray);
 //
-//   } else {
+//     for (var k = 0; k < currentArray.length; k++) {
 //
-//       const randomNumber = Math.floor((Math.random() * aiGrid.length)); // returns random number
+//       if (currentArray[k] === '') {
 //
-//       let emptySpotIndex = aiGrid[randomNumber]
+//         createAiCounter(k)
 //
-//   }; //if
+//       }; // nested if
 //
-// }; //loop
+//     }; //nested loop
+//
+//   }; // main if
+//
+// }; // loop
+
+
+// for (let j = 0; j < winCombos.length; j++) {
+//   let currentArray = winCombos[j];
+//   let first = currentArray[0]; // x
+//   let second = currentArray[1]; // x
+//   let third = currentArray[2]; // empty
+//
+//
+//   if (grid[first] === 'X' && grid[second] === 'X' && grid[third] === ''){
+//
+//   } else if (grid[second] === 'X' && grid[third] === 'X' && grid[first] === '' ) {
+//
+//   } else if (grid[first] === 'X' && grid[third] === 'X' && grid[second] === '' ) {
+//
+//   }
+//
+// }; // loop

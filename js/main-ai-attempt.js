@@ -152,9 +152,19 @@ $(document).ready( function () {
 
       // console.log('gameover');
 
+      setTimeout(function () {
+
+        $('#resetButton').trigger('click');
+
+        // .fadeOut("slow")
+
+      }, 3000);
+
       return true;
 
     };
+
+
 
 
   }; //moves checker

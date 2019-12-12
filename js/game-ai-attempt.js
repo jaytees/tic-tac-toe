@@ -61,32 +61,111 @@ const gameLogicAi = function () {
 
 aiGrid = [];
 
-for (var i = 0; i < grid.length; i++) {
 
-    if (grid[i] === '' ) {
+    if (grid[4] === '') {
 
-      aiGrid.push(i);
-      //pushes empty index numbers to ai array
+      createAiCounter(4);
 
-    }; // if
+    } else if (grid[0] === '') {
 
-}; // for loop
+      createAiCounter(0);
+
+    } else if (grid[2] === '') {
+
+      createAiCounter(2);
+
+    } else if (grid[6] === '') {
+
+      createAiCounter(6);
+
+    }else if (grid[8] === '') {
+
+      createAiCounter(8);
+
+    } else {
+
+        for (var i = 0; i < grid.length; i++) {
+
+          if (grid[i] === '' ) {
+
+            aiGrid.push(i);
+            //pushes empty index numbers to ai array
+
+          }; // if
+
+        }; //loop
+
+    }; // main if
 
 
-const randomNumber = Math.floor((Math.random() * aiGrid.length)); // returns random number
+  createRandomAiCounter();
+  // createAiCounter();
 
-const emptySpotIndex = aiGrid[randomNumber];
-
-//interpolate as html class
-let aiChoice = `#${emptySpotIndex}`;
-
-grid[emptySpotIndex] = 'X';
-//so spot on game grid doesnt show emppty again
-
-//appened select to DOM
-const $counterX = $('<div class=counterX>X</div>');
-$(aiChoice).append( $counterX );
 
 
 
 }; //gameLogicAi
+
+const createAiCounter = function ( logicIndex ) {
+
+  //randomNumber is the position of an indexNum in aiGrid
+  //empty spot index is the value
+  // const emptySpotIndex = aiGrid[logicIndex];
+  // console.log(emptySpotIndex);
+
+
+  //interpolate as html class
+  let aiChoice = `#${logicIndex}`;
+  // let aiChoice = `#${emptySpotIndex}`;
+  // console.log(aiChoice);
+
+  grid[logicIndex] = 'X';
+  // grid[emptySpotIndex] = 'X';
+  //so spot on game grid doesnt show emppty again
+
+  //appened select to DOM
+  const $counterX = $('<div class=counterX>X</div>');
+  $(aiChoice).append( $counterX );
+
+};
+
+
+
+
+//create ai counter with random number
+const createRandomAiCounter = function () {
+
+  const randomNumber = Math.floor((Math.random() * aiGrid.length)); // returns random number
+
+  const emptySpotIndex = aiGrid[randomNumber];
+
+  //interpolate as html class
+  let aiChoice = `#${emptySpotIndex}`;
+
+  grid[emptySpotIndex] = 'X';
+  //so spot on game grid doesnt show emppty again
+
+  //appened select to DOM
+  const $counterX = $('<div class=counterX>X</div>');
+  $(aiChoice).append( $counterX );
+
+}; //createRandomAiCounter
+
+
+
+// loop from createAiCounter
+// for (var i = 0; i < aiGrid.length; i++) {
+//
+//   if (aiGrid[i] === 4 || aiGrid[i] === 0 || aiGrid[i] === 2 || aiGrid[i] === 6 || aiGrid[i] === 8) {
+//
+//       return emptySpotIndex = aiGrid[i];
+//
+//   } else {
+//
+//       const randomNumber = Math.floor((Math.random() * aiGrid.length)); // returns random number
+//
+//       let emptySpotIndex = aiGrid[randomNumber]
+//
+//   }; //if
+//
+// }; //loop

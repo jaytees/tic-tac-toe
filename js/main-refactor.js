@@ -136,12 +136,12 @@ $(document).ready( function () {
     $('#o').css('color', '');
 
     // console.log(player);
-
-
   }); // resetButton
 
+
+
   const squareSelectAndWin = function (squareClicked, counter ) {
-    
+
     if (gameLogic(squareClicked, counter)) {
       //if game logic returns true, winner found
 

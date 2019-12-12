@@ -1,15 +1,8 @@
 $(document).ready( function () {
-  console.log('DOM LOADED-Refactor');
+  console.log('DOM LOADED-presentation');
 
-  let player = 1;
-  let moves = 9;
 
-  let winner = false;
 
-  let scoreO = 0;
-  let scoreX = 0;
-
-  let gameType = 1;
 
   $('#singlePlayer').on('click', function () {
 
@@ -24,7 +17,6 @@ $(document).ready( function () {
     $('.welcomeScreen').css('visibility', 'hidden');
 
   }); //multiPlayer button
-
 
 
   $('.squares').on('click', function (ev) {
@@ -101,6 +93,7 @@ $(document).ready( function () {
         winChecker('X');
         // squareSelectAndWin(ev.delegateTarget.id, 'X')
         player = 1;
+        moveCount();
 
       }, 2000);
 

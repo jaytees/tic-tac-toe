@@ -6,6 +6,7 @@
 font-family: 'Press Start 2P', cursive;
 font-family: 'Rye', cursive; */
 
+/* 70's color pallete */
 /* #cf4916
 #f9ac3d
 #758c33
@@ -16,9 +17,6 @@ font-family: 'Rye', cursive; */
 
 
 body {
-  /* 70's version */
-  /* background-color: rgb(155,73,35); */
-
   /* metal version */
   background-color: #ffffff;
   background-image: url(https://www.transparenttextures.com/patterns/brushed-alum.png);
@@ -37,10 +35,6 @@ h1 {
   letter-spacing: 10px;
   text-shadow: -5px 2px 6px;
 
-
-  /* 70's version */
-  /* color: rgb(245,198,0);
-  font-family: 'Monoton', cursive; */
 }
 
 #message {
@@ -53,7 +47,6 @@ h1 {
   margin: 35px auto;
   font-family: 'Josefin Sans', sans-serif;
   letter-spacing: 10px;
-  /* text-shadow: -3px 2px 4px; */
 
   width: 265px;
   height: 40px;
@@ -69,9 +62,6 @@ h1 {
 
 
 #gameboard{
-  /* 70's version */
-  /* border: 3px solid rgb(255, 73, 0);
-  background-color: rgb(216,70,11); */
 
 /* clean silver border */
   border: 10px solid rgba(190, 190, 190, 0.94);
@@ -96,10 +86,6 @@ h1 {
 }
 
 .squares {
-  /* 70's version */
-  /* border: 3px solid rgb(255, 221, 78);
-  background-color: rgb(194,23,3); */
-
   /* brushed metal version */
   border: 3px solid rgba(194, 194, 194, 0.31);
   border-bottom: 3px solid rgba(88, 88, 88, 0.31);
@@ -118,7 +104,7 @@ h1 {
 #container {
   height: 221px;
   width: 505px;
-  /* border: 1px solid; */
+
   margin: 0 auto;
   display: block;
 }
@@ -131,7 +117,6 @@ h1 {
   height: 120px;
   width: 78px;
 
-  /* border: 1px solid red; */
 
 }
 
@@ -160,7 +145,6 @@ h1 {
 .playerCounter {
   display: inline-block;
   text-align: center;
-  /* font-family: 'Josefin Sans', sans-serif; */
   letter-spacing: 4px;
 
   font-size: 55px;

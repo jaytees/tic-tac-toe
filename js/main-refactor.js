@@ -30,10 +30,11 @@ $(document).ready( function () {
 
             const $counterZero = $('<div class="counterZero">O</div>');
             $(squareClicked).append($counterZero);
-            //creates div with 0
+            //creates div with O
 
 
-            if (placeInGrid(squareClicked, 'O')) {
+            if (gameLogic(squareClicked, 'O')) {
+                //if game logic returns true, winner found
 
               winnerFound('O');
 
@@ -48,7 +49,7 @@ $(document).ready( function () {
             $(squareClicked).append( $counterX );
             //creates div with X
 
-            if (placeInGrid(squareClicked, 'X')) {
+            if (gameLogic(squareClicked, 'X')) {
 
               winnerFound('X');
 
@@ -75,10 +76,7 @@ $(document).ready( function () {
 
     moveCount();
 
-
-
   }); //square selector
-
 
 
   const squareChecker =  function ( squareClicked ) {
@@ -106,7 +104,6 @@ $(document).ready( function () {
       }; //if
 
   }; //square checker
-
 
 
   const moveCount = function () {
@@ -155,9 +152,58 @@ $(document).ready( function () {
 
   }); // resetButton
 
+
+  const winnerFound = function (counter) {
+
+    //update score
+    //call function to reset board and display message on delay
+
+    winCheck = true;
+
+    boardWinAnimate( winningCounter0, winningCounter1, winningCounter2, counter);
+
+    if (counter === 'O') {
+
+      // console.log('O is Winner');
+      scoreO += 1;
+      $('#scoreCountO').text(scoreO); //updates score on screen
+      $('#message').text('O IS WINNER!').css({
+        color: '#5490ff',
+        visibility: 'visible',
+      }); //displays message
+      $('#scoreBoardLeft').css('color', '#5490ff'); //makes score board all blue
+      $('#o').css('color', '#5490ff');
+      $('#x').css('color', '#d6d6d6');
+
+
+
+    } else if (counter === 'X') {
+
+      // console.log('X is Winner');
+      scoreX += 1;
+      $('#scoreCountX').text(scoreX);
+      $('#message').text('X IS WINNER!').css({
+        color: '#5b9665',
+        visibility: 'visible',
+      });
+      $('#scoreBoardRight').css('color', '#5b9665'); //makes score board all green
+      $('#x').css('color', '#5b9665');
+      $('#o').css('color', '#d6d6d6');
+
+
+    }; //if
+
+
+    // if moves = 0
+    // gameover
+
+
+  }; //winnerFound
+
+
   const playerIdentifier = function ( player ) {
 
-      if (player === 1) {  //statements are opposite to turn logic so it alternates after every squareClicked
+      if (player === 1 && winCheck === false) {  //statements are opposite to turn logic so it alternates after every squareClicked
 
         $('#x').css('color', '#5b9665');
         $('#o').css('color', '#d6d6d6');
@@ -173,47 +219,56 @@ $(document).ready( function () {
   }; // playerIdentifier
 
 
-  const winnerFound = function (counter) {
+  const boardWinAnimate = function ( winningCounter0, winningCounter1, winningCounter2, counter ) {
 
-    //update score
-    //call function to reset board and display message on delay
 
-    winCheck = true;
+
+    // console.log(winningCounter0, winningCounter1, winningCounter2);
+
 
     if (counter === 'O') {
 
-        // console.log('O is Winner');
-        scoreO += 1;
-        $('#scoreCountO').text(scoreO); //updates score on screen
-        $('#message').text('O IS WINNER!').css({
-          color: '#5490ff',
-          visibility: 'visible',
-        }); //displays message
-        $('#scoreBoardLeft').css('color', '#5490ff'); //makes score board all blue
+      $( winningCounter0 ).children().css( 'color', '#5490ff' ).animate({
+          fontSize: '65px',
+        }, 1000).animate({
+          fontSize: '55px'
+        }, 1000);
+      $( winningCounter1 ).children().css( 'color', '#5490ff' ).animate({
+          fontSize: '65px',
+        }, 1000).animate({
+          fontSize: '55px'
+        }, 1000);
+      $( winningCounter2 ).children().css( 'color', '#5490ff' ).animate({
+          fontSize: '65px',
+        }, 1000).animate({
+          fontSize: '55px'
+        }, 1000);
 
 
 
-    } else if (counter === 'X') {
+    } else {
 
-        // console.log('X is Winner');
-        scoreX += 1;
-        $('#scoreCountX').text(scoreX);
-        $('#message').text('X IS WINNER!').css({
-          color: '#5b9665',
-          visibility: 'visible',
-        });
-        $('#scoreBoardRight').css('color', '#5b9665'); //makes score board all green
+      // $( winningCounter0 .counterZero ).css('color', '#5b9665');
 
+      $( winningCounter0 ).children().css( 'color', '#5b9665' ).animate({
+          fontSize: '65px',
+        }, 1000).animate({
+          fontSize: '55px'
+        }, 1000);
+      $( winningCounter1 ).children().css( 'color', '#5b9665' ).animate({
+          fontSize: '65px',
+        }, 1000).animate({
+          fontSize: '55px'
+        }, 1000);
+      $( winningCounter2 ).children().css( 'color', '#5b9665' ).animate({
+          fontSize: '65px',
+        }, 1000).animate({
+          fontSize: '55px'
+        }, 1000);
 
-    }; //if
+    }; // if
 
-
-    // if moves = 0
-      // gameover
-
-
-  }; //winnerFound
-
+  }; // boardWinAnimate
 
 
 
@@ -225,15 +280,81 @@ $(document).ready( function () {
 
 
 
-// const boardAnimate = function ( counter ) {
+
+
+
+//argument is counter 'x' or 'o'
+
+
+// const squareSelectAndWin = function (squareClicked, counter ) {
 //
-//   if (counter === 'X') {
 //
-//     $('.counterX').css('color', '#5b9665');
+//   const $counterZero = $('<div class="counterZero">O</div>');
+//   $(squareClicked).append($counterZero);
+//   //creates div with O
+//
+//
+//   if (gameLogic(squareClicked, counter)) {
+//     //if game logic returns true, winner found
+//
+//     winnerFound(counter);
+//
+//   };
+//
+// };
+//
+//
+//
+//   if (player === 1) {
+//
+//     squareSelectAndWin(squareClicked, 'O')
+//
 //
 //   } else {
 //
-//     $('.counterZero').css('color', '#5490ff');
+//     squareSelectAndWin(squareClicked, 'X')
 //
-//   }
-// }
+//
+//
+//   }; //
+
+
+
+
+//
+//
+//
+// if (player === 1) {
+//
+//   const $counterZero = $('<div class="counterZero">O</div>');
+//   $(squareClicked).append($counterZero);
+//   //creates div with O
+//
+//
+//   if (gameLogic(squareClicked, 'O')) {
+//       //if game logic returns true, winner found
+//
+//     winnerFound('O');
+//
+//   };
+//
+//   player = 2;
+//   //changes player
+//
+// } else {
+//
+//   const $counterX = $('<div class=counterX>X</div>');
+//   $(squareClicked).append( $counterX );
+//   //creates div with X
+//
+//   if (gameLogic(squareClicked, 'X')) {
+//
+//     winnerFound('X');
+//
+//   };
+//
+//   player = 1;
+//   //changes player
+//
+//
+// }; //nested if

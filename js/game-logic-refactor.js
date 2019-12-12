@@ -15,16 +15,13 @@ const winCombos = [
 ];
 
 
-let winningCounter0;
-let winningCounter1;
-let winningCounter2;
-
+let winningSelector = '';
 
 
 //push squareClicked index to winCombos
 const gameLogic = function (squareClicked, counter){
 
-    const indexNum = parseInt(squareClicked.replace(/[^0-9]/g,''));  //gets number from square class and parse to integer
+    const indexNum = parseInt(squareClicked);  //gets number from square class and parse to integer
 
     grid[indexNum] = counter;
 
@@ -39,22 +36,12 @@ const gameLogic = function (squareClicked, counter){
 
           if (grid[first] === counter && grid[second] === counter && grid[third] === counter ){
 
-
-              console.log('index number',[i]); //is index of array where win found
-              // console.log('winner');
-
-              console.log('currentArray', currentArray); //is winning array
-
-              winningCounter0 = '#square' + currentArray[0];
-              winningCounter1 = '#square' + currentArray[1];
-              winningCounter2 = '#square' + currentArray[2];
-
-              console.log(winningCounter0, winningCounter1, winningCounter2);
-
+              winningSelector = `#${first}, #${second}, #${third}`;
+              // saves winning array as class's
 
               return true;
 
-          };//winner
+          };// if winner
 
       }; // loop
 

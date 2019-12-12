@@ -32,31 +32,19 @@ $(document).ready( function () {
             $(squareClicked).append($counterZero);
             //creates div with O
 
-
-            if (gameLogic(squareClicked, 'O')) {
-                //if game logic returns true, winner found
-
-              winnerFound('O');
-
-            };
+            squareSelectAndWin(ev.delegateTarget.id, 'O')
 
             player = 2;
-            //changes player
 
           } else {
 
-            const $counterX = $('<div class=counterX>X</div>');
-            $(squareClicked).append( $counterX );
-            //creates div with X
+             const $counterX = $('<div class=counterX>X</div>');
+             $(squareClicked).append( $counterX );
+             //creates div with X
 
-            if (gameLogic(squareClicked, 'X')) {
-
-              winnerFound('X');
-
-            };
+            squareSelectAndWin(ev.delegateTarget.id, 'X')
 
             player = 1;
-            //changes player
 
 
           }; //nested if
@@ -152,6 +140,16 @@ $(document).ready( function () {
 
   }); // resetButton
 
+  const squareSelectAndWin = function (squareClicked, counter ) {
+    console.log(squareClicked);
+    if (gameLogic(squareClicked, counter)) {
+      //if game logic returns true, winner found
+
+      winnerFound(counter);
+
+    }; //if
+
+  }; //squareSelectAndWin
 
   const winnerFound = function (counter) {
 
@@ -160,7 +158,7 @@ $(document).ready( function () {
 
     winCheck = true;
 
-    boardWinAnimate( winningCounter0, winningCounter1, winningCounter2, counter);
+    boardWinAnimate( winningSelector, counter);
 
     if (counter === 'O') {
 
@@ -203,7 +201,7 @@ $(document).ready( function () {
 
   const playerIdentifier = function ( player ) {
 
-      if (player === 1 && winCheck === false) {  //statements are opposite to turn logic so it alternates after every squareClicked
+      if (player === 1) {  //statements are opposite to turn logic so it alternates after every squareClicked
 
         $('#x').css('color', '#5b9665');
         $('#o').css('color', '#d6d6d6');
@@ -219,142 +217,29 @@ $(document).ready( function () {
   }; // playerIdentifier
 
 
-  const boardWinAnimate = function ( winningCounter0, winningCounter1, winningCounter2, counter ) {
-
-
+  const boardWinAnimate = function ( winSelector, counter ) {
 
     // console.log(winningCounter0, winningCounter1, winningCounter2);
 
+    let color = '#5490ff';
 
-    if (counter === 'O') {
+    if (counter === 'X') {
 
-      $( winningCounter0 ).children().css( 'color', '#5490ff' ).animate({
-          fontSize: '65px',
-        }, 1000).animate({
-          fontSize: '55px'
-        }, 1000);
-      $( winningCounter1 ).children().css( 'color', '#5490ff' ).animate({
-          fontSize: '65px',
-        }, 1000).animate({
-          fontSize: '55px'
-        }, 1000);
-      $( winningCounter2 ).children().css( 'color', '#5490ff' ).animate({
-          fontSize: '65px',
-        }, 1000).animate({
-          fontSize: '55px'
-        }, 1000);
+      color = '#5b9665';
 
+    };
 
+    // let color = (counter === 'X') ? '#5490ff' : '#5b9665';
 
-    } else {
-
-      // $( winningCounter0 .counterZero ).css('color', '#5b9665');
-
-      $( winningCounter0 ).children().css( 'color', '#5b9665' ).animate({
-          fontSize: '65px',
-        }, 1000).animate({
-          fontSize: '55px'
-        }, 1000);
-      $( winningCounter1 ).children().css( 'color', '#5b9665' ).animate({
-          fontSize: '65px',
-        }, 1000).animate({
-          fontSize: '55px'
-        }, 1000);
-      $( winningCounter2 ).children().css( 'color', '#5b9665' ).animate({
-          fontSize: '65px',
-        }, 1000).animate({
-          fontSize: '55px'
-        }, 1000);
-
-    }; // if
+    $( winSelector ).children().css( 'color', color )
+    .animate({
+        fontSize: '65px',
+      }, 1000).animate({
+        fontSize: '55px'
+      }, 1000);
 
   }; // boardWinAnimate
 
 
 
 }); //DOM Loaded
-
-
-
-
-
-
-
-
-
-
-//argument is counter 'x' or 'o'
-
-
-// const squareSelectAndWin = function (squareClicked, counter ) {
-//
-//
-//   const $counterZero = $('<div class="counterZero">O</div>');
-//   $(squareClicked).append($counterZero);
-//   //creates div with O
-//
-//
-//   if (gameLogic(squareClicked, counter)) {
-//     //if game logic returns true, winner found
-//
-//     winnerFound(counter);
-//
-//   };
-//
-// };
-//
-//
-//
-//   if (player === 1) {
-//
-//     squareSelectAndWin(squareClicked, 'O')
-//
-//
-//   } else {
-//
-//     squareSelectAndWin(squareClicked, 'X')
-//
-//
-//
-//   }; //
-
-
-
-
-//
-//
-//
-// if (player === 1) {
-//
-//   const $counterZero = $('<div class="counterZero">O</div>');
-//   $(squareClicked).append($counterZero);
-//   //creates div with O
-//
-//
-//   if (gameLogic(squareClicked, 'O')) {
-//       //if game logic returns true, winner found
-//
-//     winnerFound('O');
-//
-//   };
-//
-//   player = 2;
-//   //changes player
-//
-// } else {
-//
-//   const $counterX = $('<div class=counterX>X</div>');
-//   $(squareClicked).append( $counterX );
-//   //creates div with X
-//
-//   if (gameLogic(squareClicked, 'X')) {
-//
-//     winnerFound('X');
-//
-//   };
-//
-//   player = 1;
-//   //changes player
-//
-//
-// }; //nested if

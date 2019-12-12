@@ -17,7 +17,7 @@ $(document).ready( function () {
     playerIdentifier(player); //changes scoreboard color
 
     const squareClicked = '#' + ev.delegateTarget.id;
-    //provides div position of click
+    //provides div position of click, using jQuery object
 
     const ifTaken = squareChecker( squareClicked );
       // runs function to check if square already played
@@ -63,6 +63,18 @@ $(document).ready( function () {
     }; //if
 
     moveCount();
+
+    // for one player
+
+    setTimeout(function () {
+
+      gameLogicAi();
+      player = 1;
+
+    }, 4000);
+
+    
+
 
   }); //square selector
 
@@ -141,7 +153,7 @@ $(document).ready( function () {
   }); // resetButton
 
   const squareSelectAndWin = function (squareClicked, counter ) {
-    
+
     if (gameLogic(squareClicked, counter)) {
       //if game logic returns true, winner found
 

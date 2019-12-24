@@ -12,6 +12,7 @@ let scoreX = 0;
 
 
 
+
 let grid = ['', '', '', '', '', '', '', ''];
 
 let aiGrid = [];
@@ -68,7 +69,6 @@ const winLogic = function (counter) {
 
 }; //winLogic
 
-
 const gameLogicAi = function () {
 
     aiGrid = [];
@@ -76,7 +76,7 @@ const gameLogicAi = function () {
     // if moves > 5
     //   check for center corners etc
 
-    if (moves > 5) {
+    if (moves > 6) {
 
             if (grid[4] === '') {
 
@@ -101,7 +101,7 @@ const gameLogicAi = function () {
             }; //nested if's
 
 
-    } else if (moves < 5) {
+    } else if (moves <= 6) {
 
       let winningComboFound = false;
 
@@ -112,20 +112,20 @@ const gameLogicAi = function () {
           let third = currentArray[2]; // empty
 
 
-          if (grid[first] === 'X' && grid[second] === 'X' && grid[third] === ''){
+          if (grid[first] === 'O' && grid[second] === 'O' && grid[third] === ''){
             console.log(currentArray);
 
             createAiCounter(third);
             winningComboFound = true;
             break;
 
-          } else if (grid[second] === 'X' && grid[third] === 'X' && grid[first] === '' ) {
+          } else if (grid[second] === 'O' && grid[third] === 'O' && grid[first] === '' ) {
 
             createAiCounter(first);
             winningComboFound = true;
             break;
 
-          } else if (grid[first] === 'X' && grid[third] === 'X' && grid[second] === '' ) {
+          } else if (grid[first] === 'O' && grid[third] === 'O' && grid[second] === '' ) {
 
             createAiCounter(second);
             winningComboFound = true;
@@ -161,6 +161,103 @@ const gameLogicAi = function () {
       }; // else
 
 }; // gameLogicAi
+
+
+
+
+
+// const gameLogicAi = function () {
+//
+//     aiGrid = [];
+//     //
+//     // if moves > 5
+//     //   check for center corners etc
+//
+//     if (moves > 5) {
+//
+//             if (grid[4] === '') {
+//
+//               createAiCounter(4);
+//
+//             } else if (grid[0] === '') {
+//
+//               createAiCounter(0);
+//
+//             } else if (grid[2] === '') {
+//
+//               createAiCounter(2);
+//
+//             } else if (grid[6] === '') {
+//
+//               createAiCounter(6);
+//
+//             }else if (grid[8] === '') {
+//
+//               createAiCounter(8);
+//
+//             }; //nested if's
+//
+//
+//     } else if (moves < 5) {
+//
+//       let winningComboFound = false;
+//
+//         for (let j = 0; j < winCombos.length; j++) {
+//           let currentArray = winCombos[j];
+//           let first = currentArray[0]; // x
+//           let second = currentArray[1]; // x
+//           let third = currentArray[2]; // empty
+//
+//
+//           if (grid[first] === 'X' && grid[second] === 'X' && grid[third] === ''){
+//             console.log(currentArray);
+//
+//             createAiCounter(third);
+//             winningComboFound = true;
+//             break;
+//
+//           } else if (grid[second] === 'X' && grid[third] === 'X' && grid[first] === '' ) {
+//
+//             createAiCounter(first);
+//             winningComboFound = true;
+//             break;
+//
+//           } else if (grid[first] === 'X' && grid[third] === 'X' && grid[second] === '' ) {
+//
+//             createAiCounter(second);
+//             winningComboFound = true;
+//             break;
+//
+//           }
+//
+//         } //loop
+//
+//             if (winningComboFound === false) {
+//
+//               for (var l = 0; l < grid.length; l++) {
+//
+//                 if (grid[l] === '' ) {
+//
+//                   aiGrid.push(l);
+//                   //pushes empty index numbers to ai array
+//
+//
+//                 }; // if
+//
+//               }; //loop
+//
+//               const randomNumber = Math.floor((Math.random() * aiGrid.length)); // returns random number
+//
+//               const emptySpotIndex = aiGrid[randomNumber];
+//
+//               createAiCounter(emptySpotIndex);
+//
+//
+//             }; // if
+//
+//       }; // else
+//
+// }; // gameLogicAi
 
 
 const createAiCounter = function ( logicIndex ) {

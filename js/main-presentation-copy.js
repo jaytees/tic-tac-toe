@@ -175,6 +175,8 @@ $(document).ready( function () {
 
     moves = 9;
 
+    winningComboFound = false;
+
     $('#message').text('');
     //3 lines below with empty values reset css to default
     $('.scoreBoard').css('color', '');

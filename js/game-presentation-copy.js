@@ -11,8 +11,6 @@ let scoreO = 0;
 let scoreX = 0;
 
 
-
-
 let grid = ['', '', '', '', '', '', '', ''];
 
 let aiGrid = [];
@@ -31,6 +29,9 @@ const winCombos = [
 
 let winningSelector = '';
 
+let winningComboFound = false;
+let blockComboFound = false;
+
 
 //push squareClicked index to grid array
 const gameLogic = function (squareClicked, counter){
@@ -44,7 +45,7 @@ const gameLogic = function (squareClicked, counter){
 }; // placeGrid
 
 
-//checks if winning combo fiund
+//checks if winning combo found
 const winLogic = function (counter) {
 
   for (let i = 0; i < winCombos.length; i++) {
@@ -69,195 +70,102 @@ const winLogic = function (counter) {
 
 }; //winLogic
 
+
+const winOrBlockFinder = function (counter1, counter2) {
+
+  for (let j = 0; j < winCombos.length; j++) {
+    let currentArray = winCombos[j];
+    let first = currentArray[0]; // x
+    let second = currentArray[1]; // x
+    let third = currentArray[2]; // empty
+
+
+    if (grid[first] === counter1 && grid[second] === counter1 && grid[third] === ''){
+      // console.log(currentArray);
+
+      createAiCounter(third);
+      winningComboFound = true;
+      break;
+
+    } else if (grid[second] === counter1 && grid[third] === counter1 && grid[first] === '' ) {
+
+      createAiCounter(first);
+      winningComboFound = true;
+      break;
+
+    } else if (grid[first] === counter1 && grid[third] === counter1 && grid[second] === '' ) {
+
+      createAiCounter(second);
+      winningComboFound = true;
+      break;
+
+    }  //checks for win
+
+    else if (grid[first] === counter2 && grid[second] === counter2 && grid[third] === ''){
+          // console.log(currentArray);
+
+        createAiCounter(third);
+        blockComboFound = true;
+        break;
+
+      } else if (grid[second] === counter2 && grid[third] === counter2 && grid[first] === '' ) {
+
+        createAiCounter(first);
+        blockComboFound = true;
+        break;
+
+      } else if (grid[first] === counter2 && grid[third] === counter2 && grid[second] === '' ) {
+
+        createAiCounter(second);
+        blockComboFound = true;
+        break;
+
+      } // checks for block
+
+  } //loop
+
+} // winOrBlockFinder
+
+
 const gameLogicAi = function () {
 
-    aiGrid = [];
-    //
-    // if moves > 5
-    //   check for center corners etc
+    // aiGrid = [];
 
-    if (moves > 6) {
-
-            if (grid[4] === '') {
-
-              createAiCounter(4);
-
-            } else if (grid[0] === '') {
-
-              createAiCounter(0);
-
-            } else if (grid[2] === '') {
-
-              createAiCounter(2);
-
-            } else if (grid[6] === '') {
-
-              createAiCounter(6);
-
-            }else if (grid[8] === '') {
-
-              createAiCounter(8);
-
-            }; //nested if's
+    winOrBlockFinder('X', 'O')
 
 
-    } else if (moves <= 6) {
-
-      let winningComboFound = false;
-
-        for (let j = 0; j < winCombos.length; j++) {
-          let currentArray = winCombos[j];
-          let first = currentArray[0]; // x
-          let second = currentArray[1]; // x
-          let third = currentArray[2]; // empty
+    if (winningComboFound === false && blockComboFound === false) {
 
 
-          if (grid[first] === 'O' && grid[second] === 'O' && grid[third] === ''){
-            console.log(currentArray);
+      if (grid[4] === '') {
 
-            createAiCounter(third);
-            winningComboFound = true;
-            break;
+        createAiCounter(4);
 
-          } else if (grid[second] === 'O' && grid[third] === 'O' && grid[first] === '' ) {
+      } else if (grid[0] === '') {
 
-            createAiCounter(first);
-            winningComboFound = true;
-            break;
+        createAiCounter(0);
 
-          } else if (grid[first] === 'O' && grid[third] === 'O' && grid[second] === '' ) {
+      } else if (grid[2] === '') {
 
-            createAiCounter(second);
-            winningComboFound = true;
-            break;
+        createAiCounter(2);
 
-          }
+      } else if (grid[6] === '') {
 
-        } //loop
+        createAiCounter(6);
 
-            if (winningComboFound === false) {
+      }else if (grid[8] === '') {
 
-              for (var l = 0; l < grid.length; l++) {
+        createAiCounter(8);
 
-                if (grid[l] === '' ) {
-
-                  aiGrid.push(l);
-                  //pushes empty index numbers to ai array
+      } //nested if's
 
 
-                }; // if
-
-              }; //loop
-
-              const randomNumber = Math.floor((Math.random() * aiGrid.length)); // returns random number
-
-              const emptySpotIndex = aiGrid[randomNumber];
-
-              createAiCounter(emptySpotIndex);
+    }//if
 
 
-            }; // if
-
-      }; // else
+    blockComboFound = false;
 
 }; // gameLogicAi
-
-
-
-
-
-// const gameLogicAi = function () {
-//
-//     aiGrid = [];
-//     //
-//     // if moves > 5
-//     //   check for center corners etc
-//
-//     if (moves > 5) {
-//
-//             if (grid[4] === '') {
-//
-//               createAiCounter(4);
-//
-//             } else if (grid[0] === '') {
-//
-//               createAiCounter(0);
-//
-//             } else if (grid[2] === '') {
-//
-//               createAiCounter(2);
-//
-//             } else if (grid[6] === '') {
-//
-//               createAiCounter(6);
-//
-//             }else if (grid[8] === '') {
-//
-//               createAiCounter(8);
-//
-//             }; //nested if's
-//
-//
-//     } else if (moves < 5) {
-//
-//       let winningComboFound = false;
-//
-//         for (let j = 0; j < winCombos.length; j++) {
-//           let currentArray = winCombos[j];
-//           let first = currentArray[0]; // x
-//           let second = currentArray[1]; // x
-//           let third = currentArray[2]; // empty
-//
-//
-//           if (grid[first] === 'X' && grid[second] === 'X' && grid[third] === ''){
-//             console.log(currentArray);
-//
-//             createAiCounter(third);
-//             winningComboFound = true;
-//             break;
-//
-//           } else if (grid[second] === 'X' && grid[third] === 'X' && grid[first] === '' ) {
-//
-//             createAiCounter(first);
-//             winningComboFound = true;
-//             break;
-//
-//           } else if (grid[first] === 'X' && grid[third] === 'X' && grid[second] === '' ) {
-//
-//             createAiCounter(second);
-//             winningComboFound = true;
-//             break;
-//
-//           }
-//
-//         } //loop
-//
-//             if (winningComboFound === false) {
-//
-//               for (var l = 0; l < grid.length; l++) {
-//
-//                 if (grid[l] === '' ) {
-//
-//                   aiGrid.push(l);
-//                   //pushes empty index numbers to ai array
-//
-//
-//                 }; // if
-//
-//               }; //loop
-//
-//               const randomNumber = Math.floor((Math.random() * aiGrid.length)); // returns random number
-//
-//               const emptySpotIndex = aiGrid[randomNumber];
-//
-//               createAiCounter(emptySpotIndex);
-//
-//
-//             }; // if
-//
-//       }; // else
-//
-// }; // gameLogicAi
 
 
 const createAiCounter = function ( logicIndex ) {

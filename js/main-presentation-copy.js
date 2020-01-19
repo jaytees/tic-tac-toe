@@ -78,9 +78,10 @@ $(document).ready( function () {
           'line-height': '24px',
         });
 
+        moveCount();
+        
     }; //if
 
-    moveCount();
 
     // for one player
 

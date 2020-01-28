@@ -31,12 +31,12 @@ The app must;
 
 **Welcome Screen Image**
 
-![welcome screen image](images/welcome-page.png)
+![welcome screen image](images/welcome-screen.png)
 
 
 **Game Screen Image**
 
-![game screen image](images/game-screen.png)
+![game screen image](images/game-play.png)
 
 **Link to Game**
 

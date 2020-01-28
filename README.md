@@ -40,7 +40,7 @@ The app must;
 
 **Link to Game**
 
-[TICK-TACK-TOE](https://jaytees.github.io/tic-tac-toe/)
+[TIC-TAC-TOE](https://jaytees.github.io/tic-tac-toe/)
 
 
 **Tech Used**
@@ -53,4 +53,4 @@ The app must;
 
 **Current Bugs**
 
-* The majority of the bugs currently exist in single player mode. Mainly found when the computer tries to look for ways to win.
+* The majority of the bugs currently exist in single player mode. You can currently register false by continuously clicking and forcing a draw. This also causes the ai the make multiple moves.

@@ -67,6 +67,7 @@ $(document).ready( function () {
 
             }; //nested if
 
+          moveCount();
 
       } else if (winner === true) {
 
@@ -78,25 +79,28 @@ $(document).ready( function () {
           'line-height': '24px',
         });
 
-        moveCount();
-        
+
+
     }; //if
 
 
     // for one player
 
-    if (gameType === 1 && winner === false) {
+    if (gameType === 1 && winner === false && moves !== 9) {
+
 
       setTimeout(function () {
 
         playerIdentifier(player); //changes scoreboard color
         gameLogicAi();
         winChecker('X');
+        moveCount();
         // squareSelectAndWin(ev.delegateTarget.id, 'X')
         player = 1;
-        moveCount();
 
       }, 2000);
+
+
 
     }; //one player
 
@@ -133,9 +137,10 @@ $(document).ready( function () {
 
   const moveCount = function () {
 
-    moves -= 1;
+    moves += 1;
+    console.log(moves);
 
-    if (moves === 0 && winner === false) {
+    if (moves === 9 && winner === false) {
       $('#message').text('DRAW!').css({
         color: '#ff5454',
         visibility: 'visible',
@@ -159,8 +164,6 @@ $(document).ready( function () {
     };
 
 
-
-
   }; //moves checker
 
 
@@ -174,7 +177,7 @@ $(document).ready( function () {
 
     player = 1;
 
-    moves = 9;
+    moves = 0;
 
     winningComboFound = false;
 

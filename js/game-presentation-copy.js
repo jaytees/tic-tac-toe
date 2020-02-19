@@ -4,14 +4,14 @@ let gameType = 1;
 
 let player = 1;
 
-let moves = 9;
+let moves = 0;
 let winner = false;
 
 let scoreO = 0;
 let scoreX = 0;
 
 
-let grid = ['', '', '', '', '', '', '', ''];
+let grid = ['', '', '', '', '', '', '', '', ''];
 
 let aiGrid = [];
 
@@ -157,7 +157,13 @@ const gameLogicAi = function () {
 
         createAiCounter(8);
 
-      } //nested if's
+      } else {
+
+        let emptySquare = grid.indexOf('');
+
+        createAiCounter(emptySquare);
+
+      };
 
 
     }//if
@@ -182,5 +188,8 @@ const createAiCounter = function ( logicIndex ) {
   //appened select to DOM
   const $counterX = $('<div class=counterX>X</div>');
   $(aiChoice).append( $counterX );
+
+
+  // moves += 1;
 
 };
